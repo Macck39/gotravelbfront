@@ -131,14 +131,14 @@ const BasicForm = () => {
         console.log(distance, "distance");
         const updatedFormData = { ...formData, distance };
         setFormData(updatedFormData);
-        // const res = await axios.post('http://localhost:5000/api/userdata', updatedFormData, {
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   }
-        // })
+        const res = await axios.post('http://localhost:5000/api/cabrequest', updatedFormData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
         console.log(updatedFormData,"updatedFormData");
-        //   const reqRes = await res.data
-        //   console.log(reqRes,"res")
+          const reqRes = await res.data
+          console.log(reqRes,"res")
       } catch (error) {
         console.error(error);
       } 
