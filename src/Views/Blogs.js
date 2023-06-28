@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RecentPosts from '../BlogsData/RecentPosts';
+import baseUrl from '../Components/BaseUrl';
 
 const BlogHome = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [recentPosts, setRecentPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/blog') // Make an API call to fetch all blog posts
+    fetch(`${baseUrl}/blog`) // Make an API call to fetch all blog posts
       .then(response => response.json())
       .then(data => {setBlogPosts(data);
        setRecentPosts(data);}

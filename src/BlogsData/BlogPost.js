@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import RecentPosts from './RecentPosts';
+import baseUrl from '../Components/BaseUrl';
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -13,17 +14,13 @@ const BlogPost = () => {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/blog/${slug}`) // Make an API call to fetch all blog posts
+    fetch(`${baseUrl}/blog/${slug}`) // Make an API call to fetch all blog posts
       .then(response => response.json())
       .then(data => setBlogPosts(data))
       .catch(error => console.error(error));
-  }, []);
-
-
-
+  },[slug,]);
   
-console.log(blogPost,"blog")
-
+// console.log(blogPost,"blog")
 
 if(!blogPost){
   return <div>
@@ -44,7 +41,7 @@ const{metadata ,content, blogData} = blogPost;
         <ReactMarkdown className="prose flex flex-col mx-auto text-sm sm:text-md"
           components={{
             img: ({ node, ...props }) => (
-              <img {...props} className="mx-auto w-full h-96 rounded-md shadow-xl " style={{ maxWidth: '100%' }} />
+              <img {...props} className="mx-auto w-full h-96 rounded-md shadow-xl "  alt='' style={{ maxWidth: '100%' }} />
             ),
             p: ({ node, ...props }) => <p {...props} className="md:mx-8 text-justify mb-4" />,
             ul: ({ node, ...props }) => <ul {...props} className="list-disc md:ml-6 pl-2 "  ordered="false" />,
@@ -53,9 +50,9 @@ const{metadata ,content, blogData} = blogPost;
             ol: ({ node, ...props }) => (
               <ol {...props} className="list-decimal md:ml-6 pl-2" ordered="false" />
             ),         
-            h1: ({node, ...props}) => <h1 {...props} className='text-center text-3xl mb-2' />,
-            h2: ({node, ...props}) => <h1 {...props} className='text-center text-2xl m-4' />,
-            h3: ({node, ...props}) => <h1 {...props} className='text-left text-2xl m-4' />,
+            h1: ({node, children, ...props}) => <h1 {...props} className='text-center text-3xl mb-2'> {children} </h1> ,
+            h2: ({node, children, ...props}) => <h2 {...props} className='text-center text-2xl m-4'> {children} </h2>,
+            h3: ({node, children, ...props}) => <h3 {...props} className='text-left text-2xl m-4'> {children} </h3>,
           }}
         >{content}</ReactMarkdown>
         </div>

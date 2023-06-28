@@ -4,7 +4,7 @@ function About() {
   return (
     <div className="max-w-[1320px] md:py-[80] py-5 flex mx-auto flex-col items-center md:flex-row">
       <div className="flex md:w-1/2 pb-5">
-        <img className="h-96 w-full object-cover" alt="some image" src="/images/fleet-4.jpeg"/>
+        <img className="h-96 w-full object-cover" alt="About Us" src="/images/fleet-4.jpeg"/>
       </div>
       <div className="md:w-1/2 px-5">
         <h1 className="text-4xl pb-5">Who We Are</h1>
